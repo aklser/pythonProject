@@ -1,0 +1,8 @@
+my_tuple = ("asd", 123, "e")
+print([*my_tuple])
+print((False))
+print((False,))
+(a, b, c) = (1, 2, 4)
+print(a, b, c)
+(q, w, e, r) = range(1, 5)
+print(q, w, e, r)
