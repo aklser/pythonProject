@@ -3,8 +3,8 @@ import sys
 import random
 import numpy as np
 import pyqtgraph as pg
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QGridLayout, QTableView
-from PyQt6.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QGridLayout, QTableView
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 
 class Demo(QWidget):
