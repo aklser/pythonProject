@@ -1,10 +1,10 @@
 import cgitb
 import sys
-import random
 import numpy as np
-import pyqtgraph as pg
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QGridLayout, QTableView
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
+from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QTableView, QGridLayout, QApplication
+import pyqtgraph as pg
+from numpy import random
 
 
 class Demo(QWidget):
