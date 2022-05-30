@@ -1,9 +1,8 @@
 import cgitb
 import sys
 from random import random
-
 import numpy as np
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
 import pyqtgraph as pg
 
 
@@ -13,7 +12,7 @@ class demo(QWidget):
         self.initui()
 
     def initui(self):
-        self.setGeometry(0, 0, 600, 600)
+        self.setGeometry(10, 10, 600, 400)
 
         pg.setConfigOptions(leftButtonPan=True)
         pg.setConfigOption('background', 'w')
@@ -23,11 +22,12 @@ class demo(QWidget):
 
         self.V_layout = QVBoxLayout()
         self.V_layout.addWidget(self.g)
+        self.V_layout.addWidget(QLabel("213"))
         self.setLayout(self.V_layout)
         self.show()
 
 
-if __name__ == "__name__":
+if __name__ == "__main__":
     cgitb.enable()
     app = QApplication(sys.argv)
     ex = demo()
