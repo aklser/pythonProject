@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-
-"""
-Module implementing ExchangeRate.
-"""
-
 import sys
 import pandas
 import pyqtgraph as pg
-from PyQt5.QtGui import QPicture, QPainter
-from PyQt5.QtCore import pyqtSlot, QRect, QPointF, QRectF
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtGui import QPicture, QPainter
+from PyQt6.QtCore import  QPointF, QRectF
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from Ui_ui import Ui_MainWindow
 
 
@@ -74,16 +69,8 @@ class CandlestickItem(pg.GraphicsObject):
 
 
 class ExchangeRate(QMainWindow, Ui_MainWindow):
-    """
-    Class documentation goes here.
-    """
 
     def __init__(self, parent=None):
-        """
-        Constructor
-        @param parent reference to the parent widget
-        @type QWidget
-        """
         super(ExchangeRate, self).__init__(parent)
         self.setupUi(self)
         self.InitUi()
