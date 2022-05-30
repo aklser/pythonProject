@@ -3,15 +3,17 @@ import sys
 import random
 import numpy as np
 import pyqtgraph as pg
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QGridLayout, QTableView
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QGridLayout, QTableView
+from PyQt6.QtGui import QStandardItemModel, QStandardItem
 
 
 class Demo(QWidget):
     def __init__(self):
         super(Demo, self).__init__()
-        self.setGeometry(0, 0, 2000, 1000)
+        self.initui()
 
+    def initui(self):
+        self.setGeometry(0, 0, 2000, 1000)
         # pyqraph全局设置
         pg.setConfigOptions(leftButtonPan=True)
         pg.setConfigOption('background', 'w')
