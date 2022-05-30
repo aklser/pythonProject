@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import cgitb
 import sys
 import pandas
 import pyqtgraph as pg
 from PyQt6.QtGui import QPicture, QPainter
-from PyQt6.QtCore import  QPointF, QRectF
+from PyQt6.QtCore import QPointF, QRectF
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from Ui_ui import Ui_MainWindow
 
@@ -93,7 +94,7 @@ class ExchangeRate(QMainWindow, Ui_MainWindow):
         if self.exrwidget.sceneBoundingRect().contains(pos):
             mousePoint = vb.mapSceneToView(pos)
             index = int(mousePoint.x() + 1 / 3.)
-            if index >= 0 and index < len(self.drawChart.data_list):
+            if 0 <= index < len(self.drawChart.data_list):
                 date, close, open, high, low, price_change = self.drawChart.data_list[index][1::]
                 self.label_date_c.setText(date)
                 self.label_close_c.setText(str(close))
@@ -115,4 +116,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     exrate = ExchangeRate()
     exrate.show()
+    cgitb.enable()
     sys.exit(app.exec_())

@@ -1,3 +1,4 @@
+import cgitb
 import sys
 import random
 import numpy as np
@@ -69,4 +70,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     demo = Demo()
     demo.show()
+    cgitb.enable()
     sys.exit(app.exec())
