@@ -24,6 +24,7 @@ def update2():
     for i in a:
         try:
             b[i][ptr2] = data_all[i][0]
+            print(b)
         except:
             print("请打开应用或对应用进行操作！")
         else:

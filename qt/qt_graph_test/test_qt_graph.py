@@ -28,9 +28,9 @@ class Demo(QWidget):
         self.pw3 = pg.PlotWidget(self)
 
         r_symbol, r_color = self.random_item()
-        self.myGDate = []
-        self.ptr = np.empty(2)
-        self.plot_data = self.pw.plot(self.myGDate, pen=None, symbol=r_symbol, symbolBrush=r_color)
+        self.myGDate = np.empty(3)
+        self.ptr = 0
+        self.plot_data = self.pw.plot(self.myGDate, pen="r", symbol=r_symbol, symbolBrush=r_color)
 
         # 按钮
         self.plot_btn = QPushButton('reset', self)
@@ -92,17 +92,19 @@ class Demo(QWidget):
 
     def update_mydate(self):
         self.data_all = adb_cpu_fps_mem.do_fps_line("com.tencent.tim")
-        print(self.data_all)
+        # print(self.data_all)
+        # print(self.myGDate[0])
+
         self.myGDate[self.ptr] = self.data_all['7HX5T19924012747'][0]
         if self.ptr + 1 >= self.myGDate.shape[0]:
-            tmp = self.myGDate[self.ptr]
-            self.myGDate = np.empty(self.myGDate.shap[0] * 2)
+            tmp = self.myGDate
+            self.myGDate = np.empty(self.myGDate.shape[0] * 2)
             self.myGDate[:tmp.shape[0]] = tmp
-        self.plot_data.setData(self.myGDate)
+        self.plot_data.setData(self.myGDate[:self.ptr + 1])
         self.ptr += 1
 
     def timer_update(self):
-        timer = pg.QtCore.QTimer()
+        timer = pg.QtCore.QTimer(self)
         timer.timeout.connect(self.update_mydate)
         timer.start(1000)
 
