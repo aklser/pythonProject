@@ -20,6 +20,7 @@ def update1():
 
 def update2():
     global ptr2
+    print(b)
     for i in a:
         try:
             b[i][ptr2] = data_all[i][0]
@@ -62,6 +63,7 @@ if __name__ == '__main__':
     for i in adb_cfm.devices_info:
         a[i] = p2.plot(pen=(0, random.randint(175, 255), random.randint(175, 255)))
         b[i] = np.empty(2)
+
     p2.showGrid(x=True, y=True)
     p2.setTitle("fps")
     p2.setLabel(axis="left", text="帧率")

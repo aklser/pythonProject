@@ -12,7 +12,7 @@ class demo(QWidget):
         self.initui()
 
     def initui(self):
-        self.setGeometry(10, 10, 600, 400)
+        self.setGeometry(0, 0, 600, 400)
 
         pg.setConfigOptions(leftButtonPan=True)
         pg.setConfigOption('background', 'w')
