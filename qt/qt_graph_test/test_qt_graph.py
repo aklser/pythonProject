@@ -2,7 +2,7 @@ import cgitb
 import sys
 import numpy as np
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
-from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QTableView, QGridLayout, QApplication, QListView
+from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QGridLayout, QApplication, QListView
 import pyqtgraph as pg
 from numpy import random
 
@@ -45,7 +45,7 @@ class Demo(QWidget):
                       {"serial_n": "7HX5T19924012747", "state": "device"},
                       {"serial_n": "7HX5T19924012747", "state": "device"}]
         for i in self.qList:
-            item = QStandardItem(i["serial_n"] + ":       " + i["state"])
+            item = QStandardItem(i["serial_n"] + ":    " + i["state"])
             slm.appendRow(item)
         self.listView.setModel(slm)
         self.listView.clicked.connect(self.clicked)
