@@ -26,7 +26,6 @@ class Demo(QWidget):
         self.pw = pg.PlotWidget(self)
         self.pw2 = pg.PlotWidget(self)
         self.pw3 = pg.PlotWidget(self)
-
         r_symbol, r_color = self.random_item()
         self.myGDate = np.empty(3)
         self.ptr = 0
@@ -36,7 +35,7 @@ class Demo(QWidget):
         self.plot_btn = QPushButton('reset', self)
         self.plot_btn.clicked.connect(self.plot_slot)
 
-        # l界面
+        # 左侧界面
         self.G_layout_2 = QGridLayout()
         self.listView = QListView()
         self.listView2 = QListView()
