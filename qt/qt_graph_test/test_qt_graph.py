@@ -91,9 +91,12 @@ class Demo(QWidget):
 
     def update_mydate(self):
         self.data_all = adb_cpu_fps_mem.do_fps_line("com.tencent.tim")
-        # print(self.data_all)
-        # print(self.myGDate[0])
-
+        print(self.data_all)
+        print(self.data_all['7HX5T19924012747'][0])
+        if not self.data_all:
+            print("请打开gpu呈现模式中的adb或打开任意应用")
+            self.data_all['7HX5T19924012747'][0] = 0
+        print(self.data_all['7HX5T19924012747'][0])
         self.myGDate[self.ptr] = self.data_all['7HX5T19924012747'][0]
         if self.ptr + 1 >= self.myGDate.shape[0]:
             tmp = self.myGDate
@@ -112,5 +115,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     demo = Demo()
     demo.show()
-    cgitb.enable()
+    # cgitb.enable()
     sys.exit(app.exec())
