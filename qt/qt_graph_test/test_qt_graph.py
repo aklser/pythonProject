@@ -1,8 +1,9 @@
 import cgitb
 import sys
 import numpy as np
-from PyQt6.QtGui import QStandardItemModel, QStandardItem
-from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QGridLayout, QApplication, QListView
+from PyQt6.QtGui import QStandardItemModel, QStandardItem, QGuiApplication
+from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, \
+    QGridLayout, QApplication, QListView, QMainWindow
 import pyqtgraph as pg
 from numpy import random
 
@@ -16,7 +17,8 @@ class Demo(QWidget):
         self.timer_update()
 
     def initui(self):
-        self.setGeometry(0, 0, 2000, 1000)
+        self.resize(1000, 800)
+        self.center()
         # pyqraph全局设置
         pg.setConfigOptions(leftButtonPan=True)
         pg.setConfigOption('background', 'w')
@@ -73,6 +75,12 @@ class Demo(QWidget):
         self.G_layout.setColumnStretch(0, 1)
         self.G_layout.setColumnStretch(1, 4)
         self.setLayout(self.G_layout)
+
+    def center(self):
+        screen = QGuiApplication.primaryScreen().size()
+        size = self.geometry()
+        self.move((screen.width() - size.width()) / 2,
+                  (screen.height() - size.height()) / 2)
 
     def plot_slot(self):
         x, y, r_symbol, r_color = self.random_item()
