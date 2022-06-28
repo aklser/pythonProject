@@ -43,9 +43,9 @@ class Demo(QWidget):
         self.listView2 = QListView()
 
         slm = QStandardItemModel()
-        self.qList = [{"serial_n": "7HX5T19924012747", "state": "device"},
-                      {"serial_n": "7HX5T19924012747", "state": "device"},
-                      {"serial_n": "7HX5T19924012747", "state": "device"}]
+        self.qList = [{"serial_n": "xghmozaiwgcylr7p", "state": "device"},
+                      {"serial_n": "xghmozaiwgcylr7p", "state": "device"},
+                      {"serial_n": "xghmozaiwgcylr7p", "state": "device"}]
         for i in self.qList:
             item = QStandardItem(i["serial_n"] + ":    " + i["state"])
             slm.appendRow(item)
@@ -79,13 +79,15 @@ class Demo(QWidget):
     def center(self):
         screen = QGuiApplication.primaryScreen().size()
         size = self.geometry()
-        self.move((screen.width() - size.width()) / 2,
-                  (screen.height() - size.height()) / 2)
+
+        self.move((screen.width() - size.width()) // 2,
+                  (screen.height() - size.height()) // 2)
 
     def plot_slot(self):
         x, y, r_symbol, r_color = self.random_item()
         self.plot_data.setData(x, y, pen=None, symbol=r_symbol, symbolBrush=r_color)
 
+    # 图表点位图标颜色与形状随机
     def random_item(self):
         # x = np.random.normal(size=1000)
         # y = np.random.normal(size=1000)
@@ -100,12 +102,12 @@ class Demo(QWidget):
     def update_mydate(self):
         self.data_all = adb_cpu_fps_mem.do_fps_line("com.tencent.tim")
         print(self.data_all)
-        print(self.data_all['7HX5T19924012747'][0])
+        print(self.data_all['xghmozaiwgcylr7p'][0])
         if not self.data_all:
             print("请打开gpu呈现模式中的adb或打开任意应用")
-            self.data_all['7HX5T19924012747'][0] = 0
-        print(self.data_all['7HX5T19924012747'][0])
-        self.myGDate[self.ptr] = self.data_all['7HX5T19924012747'][0]
+            self.data_all['xghmozaiwgcylr7p'][0] = 0
+        print(self.data_all['xghmozaiwgcylr7p'][0])
+        self.myGDate[self.ptr] = self.data_all['xghmozaiwgcylr7p'][0]
         if self.ptr + 1 >= self.myGDate.shape[0]:
             tmp = self.myGDate
             self.myGDate = np.empty(self.myGDate.shape[0] * 2)
