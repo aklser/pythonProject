@@ -1,3 +1,5 @@
+import cgitb
+import os
 import subprocess
 import time
 from functools import reduce
@@ -100,12 +102,15 @@ def cpu_info_one(serial_num, Application_name):
     for item in serial_num:
         device_cpu_info = subprocess.Popen(f"adb -s {item} shell dumpsys cpuinfo | findstr {Application_name}",
                                            stdout=subprocess.PIPE, shell=True)
+        device_cpu_num = os.popen('adb shell cat /proc/cpuinfo | find /c /i "processor"').read()
+
         info_need = device_cpu_info.stdout.read().splitlines()
         little_list = []
         i = 0
         for it in info_need:
             it = it.decode("utf-8")
             i = i + float(it.split()[0].replace("%", ""))
+        i = i / int(device_cpu_num)
         little_list.append("%.2f" % i)
         if len(item) == 0 or len(little_list) == 0:
             continue
@@ -205,9 +210,11 @@ def do_fps_line(app):
     return n
 
 
-devices_info = adb_cpu_echarts.getDeviceInfo()
 if __name__ == "__main__":
-    pass
-    # do_cpu_line("com.tencent.tim", 60)
+    devices_info = adb_cpu_echarts.getDeviceInfo()
+    # pass
+    # cgitb.enable()
+    a = do_cpu_line("com.tencent.tim")
+    print(a)
     # do_mem_line("com.tencent.tim", 6)
     # do_fps_line("com.tencent.tim", 60)

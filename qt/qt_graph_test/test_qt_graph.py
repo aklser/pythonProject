@@ -45,7 +45,8 @@ class Demo(QWidget):
         slm = QStandardItemModel()
         self.qList = [{"serial_n": "xghmozaiwgcylr7p", "state": "device"},
                       {"serial_n": "xghmozaiwgcylr7p", "state": "device"},
-                      {"serial_n": "xghmozaiwgcylr7p", "state": "device"}]
+                      {"serial_n": "xghmozaiwgcylr7p", "state": "device"}
+                      ]
         for i in self.qList:
             item = QStandardItem(i["serial_n"] + ":    " + i["state"])
             slm.appendRow(item)
@@ -76,6 +77,7 @@ class Demo(QWidget):
         self.G_layout.setColumnStretch(1, 4)
         self.setLayout(self.G_layout)
 
+    # 应用居中
     def center(self):
         screen = QGuiApplication.primaryScreen().size()
         size = self.geometry()
