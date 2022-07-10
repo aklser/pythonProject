@@ -196,7 +196,6 @@ def fps_info_one(serial_num, Application_name):
 # 功能：通过设备序列号与应用名生成html
 def do_cpu_line(app):
     n = cpu_info_one(devices_info, app)
-
     return n
 
 

@@ -30,7 +30,7 @@ def adb_packageslist_3_info(devices_num):
 
 # 参数：无，
 # 返回值：字典，
-# 功能：返回某些设备中第三方应用{"0":“”，“1”：“”}
+# 功能：
 def adb_flow_info():
     info_flow = os.popen("adb shell cat /proc//net/dev")
 

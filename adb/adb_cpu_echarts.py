@@ -23,8 +23,10 @@ def getDeviceInfo():
                 continue
             elif item.strip() == "":
                 continue
-            else:
+            elif "devices" in item:
                 serial_num.append(item.split()[0])
+            else:
+                continue
         return serial_num
     else:
         return []
