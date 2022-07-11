@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, \
     QGridLayout, QApplication, QListView, QMainWindow
 import pyqtgraph as pg
 from numpy import random
+from pyqtgraph import PlotWidget
 
 from qt.qt_graph_test import adb_fps_cpu_mem_flow, adb_packages_list_3
 
@@ -25,15 +26,24 @@ class Demo(QWidget):
         self.resize(1000, 800)
         self.center()
         # pyqraph全局设置
-        pg.setConfigOptions(leftButtonPan=True)
+        pg.setConfigOptions(leftButtonPan=False)
         pg.setConfigOption('background', 'w')
         pg.setConfigOption('foreground', 'k')
 
         # plot数据设置
-        self.pw = pg.PlotWidget(self, title="fps")
-        self.pw2 = pg.PlotWidget(self, title="memory")
-        self.pw3 = pg.PlotWidget(self, title="flow")
-        self.pw4 = pg.PlotWidget(self, title="cpu")
+
+        self.pw = PlotWidget(self, title="fps")
+        self.pw2 = PlotWidget(self, title="memory")
+        self.pw3 = PlotWidget(self, title="flow")
+        self.pw4 = PlotWidget(self, title="cpu")
+        self.pw.addLegend()
+        self.pw2.addLegend()
+        self.pw3.addLegend()
+        self.pw4.addLegend()
+        self.pw.setLabel("left", "帧率")
+        self.pw2.setLabel("left", "内存(M)")
+        self.pw3.setLabel("left", "流量(KB)")
+        self.pw4.setLabel("left", "cpu占比(%)")
         r_symbol, r_color = self.random_item()
         r_symbol2, r_color2 = self.random_item()
         self.arr_init = np.empty(1)
@@ -48,11 +58,12 @@ class Demo(QWidget):
         self.ptr3 = 0
         self.ptr3_2 = 0
         self.ptr4 = 0
-        self.plot_data = self.pw.plot(self.myGDate, pen="r", symbol=r_symbol, symbolBrush=r_color, title="fps")
-        self.plot_data2 = self.pw2.plot(self.myGDate2, pen="r", symbol=r_symbol, symbolBrush=r_color, title="mem")
-        self.plot_data3 = self.pw3.plot(self.myGDate3, pen="r", symbol=r_symbol, symbolBrush=r_color, title="down")
-        self.plot_data3_2 = self.pw3.plot(self.myGDate3_2, pen="r", symbol=r_symbol2, symbolBrush=r_color2, title='up')
-        self.plot_data4 = self.pw4.plot(self.myGDate4, pen="r", symbol=r_symbol, symbolBrush=r_color, title="cpu")
+        self.plot_data = self.pw.plot(self.myGDate, pen="r", symbol=r_symbol, symbolBrush=r_color, name="fps")
+        self.plot_data2 = self.pw2.plot(self.myGDate2, pen="r", symbol=r_symbol, symbolBrush=r_color, name="mem")
+        self.plot_data3 = self.pw3.plot(self.myGDate3, pen="r", symbol=r_symbol, symbolBrush=r_color, name="down")
+        self.plot_data3_2 = self.pw3.plot(self.myGDate3_2, pen="r", symbol=r_symbol2, symbolBrush=r_color2, fillLevel=0,
+                                          fillBrush=(255, 255, 255, 30), name='up')
+        self.plot_data4 = self.pw4.plot(self.myGDate4, pen="r", symbol=r_symbol, symbolBrush=r_color, name="cpu")
 
         # 按钮
         self.plot_btn = QPushButton('reset', self)

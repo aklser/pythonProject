@@ -46,7 +46,7 @@ def mem_info_one(serial_num, Application_name):
     for info_line in info_all_lines:
         if "PSS:" in info_line:
             little_dict = info_line.split()
-    little_list.append(int(little_dict[2])+int(little_dict[5])+int(little_dict[9]))
+    little_list.append(int(little_dict[2]) + int(little_dict[5]) + int(little_dict[9]))
     little_list[0] = little_list[0] // 1024
     if len(little_list) != 0:
         mem[serial_num] = little_list
@@ -95,7 +95,6 @@ def fps_info_one(serial_num, Application_name):
     # print(little_dict)
     # print(len(little_list))
     return fps
-
 
 
 def flow_info_one(serial_num, Application_name):
