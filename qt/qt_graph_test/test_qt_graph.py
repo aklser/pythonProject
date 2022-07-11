@@ -66,8 +66,12 @@ class Demo(QWidget):
         self.plot_data4 = self.pw4.plot(self.myGDate4, pen="r", symbol=r_symbol, symbolBrush=r_color, name="cpu")
 
         # 按钮
-        self.plot_btn = QPushButton('reset', self)
+        self.plot_btn = QPushButton("开始", self)
         self.plot_btn.clicked.connect(self.start_btn)
+        self.plot_btn_2 = QPushButton("停止", self)
+        self.plot_btn_2.clicked.connect(self.stop_btn)
+        self.plot_btn_3 = QPushButton("清除", self)
+        self.plot_btn_3.clicked.connect(self.clear_btn)
 
         # 左侧界面
         self.G_layout_2 = QGridLayout()
@@ -103,6 +107,8 @@ class Demo(QWidget):
         self.V_layout.addWidget(self.pw3)
         self.V_layout.addWidget(self.pw4)
         self.V_layout.addWidget(self.plot_btn)
+        self.V_layout.addWidget(self.plot_btn_2)
+        self.V_layout.addWidget(self.plot_btn_3)
 
         # 右侧与左侧的位置与比例
         self.G_layout.addLayout(self.G_layout_2, 0, 0, -1, 1)
@@ -129,7 +135,25 @@ class Demo(QWidget):
 
     # 停止按钮功能
     def stop_btn(self):
-        print("stop")
+        self.timer.stop()
+        self.timer2.stop()
+        self.timer3.stop()
+        self.timer4.stop()
+        print("结束！")
+
+    # 清除按钮功能
+    def clear_btn(self):
+        self.myGDate = self.arr_init
+        self.myGDate2 = self.arr_init
+        self.myGDate3 = self.arr_init
+        self.myGDate3_2 = self.arr_init
+        self.myGDate4 = self.arr_init
+        self.ptr = 0
+        self.ptr2 = 0
+        self.ptr3 = 0
+        self.ptr3_2 = 0
+        self.ptr4 = 0
+        print("清除成功！")
 
     # 图表点位图标颜色与形状随机
     def random_item(self):
